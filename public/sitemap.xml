@@ -3,4 +3,10 @@
     <url>
         <loc>https://darkaine.fr/</loc>
     </url>
+    <url>
+        <loc>https://darkaine.fr/categories/</loc>
+    </url>
+    <url>
+        <loc>https://darkaine.fr/tags/</loc>
+    </url>
 </urlset>
