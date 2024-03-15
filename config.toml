@@ -38,7 +38,7 @@ anchors = "on"
 
 [extra]
 
-name = "Darkaine"                         # Your name
+name = "Darkaine"                     # Your name
 id = "Mémo"                           # Your id / username / handle
 bio = "Je découvre, j'apprends, je comprends et je partage mes mémos."                          # Your bio
 avatar = "img/avatar.jpeg"            # Your avatar
@@ -52,17 +52,17 @@ homepage_layout = "about"             # "about" | "list" | "recent"
 
 recent_max = 15
 recent_more = true
-recent_more_text = "more »"
+recent_more_text = "plus »"
 
 sections = [
-    { name = "mémos", path = "/", is_external = false },
-    # { name = "projects", path = "/projects", is_external = false },
+    { name = "Mémos", path = "/", is_external = false },
+    { name = "Projets", path = "/projects", is_external = false },
     # { name = "about", path = "/about", is_external = false },
-    # { name = "github", path = "https://github.com/<your-username>", is_external = true },
+    #{ name = "github", path = "https://github.com/drkaine", is_external = true },
 ]
 blog_section_path = ""
 
-nav_separator = "::"
+nav_separator = "\\"
 nav_wrapper_left = "{"
 nav_wrapper_right = "} ;"
 nav_wrapper_separator = ","
@@ -74,7 +74,7 @@ back_to_top = true                    # Whether to show back-to-top button on po
 
 toc = true                            # Whether to show Table-Of-Contents by default
 copy = true                           # Whether to add a copy button on code blocks by default
-comment = true                       # Whether to show giscus comment section by default, see https://giscus.app for more info
+comment = true                        # Whether to show giscus comment section by default, see https://giscus.app for more info
 display_tags = true                   # Whether to display tags on post pages by default
 truncate_summary = false              # Whether to truncate the summary of a post by default
 
