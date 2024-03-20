@@ -1,9 +1,17 @@
+# serene v3.2.0
+#
+# - docs: https://github.com/isunjn/serene/blob/latest/USAGE.md
+# - check for updates: https://github.com/isunjn/serene/releases
+#
+#=========================================================================================
+
+
 # The URL the site will be built for
 base_url = "https://darkaine.fr"
 
 author = "Darkaine"
-title = "Mémo, partager pour mieux comprendre"
-description = "Je partage ce que j'apprends sur le monde de l'informatique et la qualité logicielle"
+title = "Partager pour mieux comprendre et apprendre"
+description = "Je partage mes notes et mémos sur ce que j'apprends et découvre"
 default_language = "fr"
 theme = "serene"
 
@@ -39,8 +47,8 @@ anchors = "on"
 [extra]
 
 name = "Darkaine"                     # Your name
-id = "Mémo"                           # Your id / username / handle
-bio = "Je découvre, j'apprends, je comprends et je partage mes mémos."                          # Your bio
+id = "Mémos"                           # Your id / username / handle
+bio = "Je découvre, j'apprends, je prend des notes et je partage mes mémos."                          # Your bio
 avatar = "img/avatar.jpeg"            # Your avatar
 links = [                             # Your links
     {name = "GitHub", icon = "github", url = "https://github.com/drkaine"},
@@ -48,16 +56,17 @@ links = [                             # Your links
     {name = "Bluesky", icon = "bluesky", url = "https://bsky.app/profile/darkaine.bsky.social"},
 ]
 
-homepage_layout = "about"             # "about" | "list" | "recent"
+homepage_layout = "list"             # "about" | "list" | "recent"
 
 recent_max = 15
 recent_more = true
 recent_more_text = "plus »"
 
 sections = [
-    { name = "Mémos", path = "/", is_external = false },
-    { name = "Projets", path = "/projects", is_external = false },
-    # { name = "about", path = "/about", is_external = false },
+    { name = "Notes", path = "/", is_external = false },
+    { name = "Projets", path = "/projets", is_external = false },
+    { name = "À propos", path = "/a-propos", is_external = false },
+    { name = "Katas", path = "/katas", is_external = false },
     #{ name = "github", path = "https://github.com/drkaine", is_external = true },
 ]
 blog_section_path = ""
