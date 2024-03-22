@@ -82,4 +82,4 @@ Pour redémarrer son serveur :
 sudo reboot 
 ```
 
-Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que nous voulons utiliser puis [configurer Git](git.md) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer son serveur (exemple : apache ou nginx)](config_server.md).
+Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que nous voulons utiliser puis [configurer Git](/notes/git) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer son serveur (exemple : apache ou nginx)](/notes/config_server).
