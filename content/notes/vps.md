@@ -4,11 +4,13 @@ date = 2024-03-20
 description = "Prise en main d'un VPS"
 
 [taxonomies]
-categories = ["Infrastructure"]
-tags = ["infrastructure", "prise en main"]
+categories = ["Configuration"]
+tags = ["configuration", "infrastructure", "prise en main"]
 
 [extra]
 lang = "fr"
+toc = true
+show_comment = true
 
 +++
 
@@ -47,22 +49,37 @@ Les VPS ont comme inconvénients :
 
 Après avoir sélectionné son offre VPS, en choisissant sa RAM, son CPU, son OS et son stockage, il faut récupérer l'adresse IP, le nom de l'utilisateur et le mot de passe. Une fois toutes ces informations en main, sur sa machine physique, on se crée une clé SSH.
 
- ``` ssh-keygen -t rsa -b 4096 -C "your_email@example.com" ```
+ ``` 
+ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" 
+ ```
 
 Ensuite, la commande suivante sert à se connecter à son VPS :
 
- ``` NOM_Utilisateur@IPV4 # exemple ubuntu@00.00.000.000 ```
+ ``` 
+ NOM_Utilisateur@IPV4 # exemple ubuntu@00.00.000.000 
+ ```
 
 Une des premières choses à faire une fois connecté est de changer son mot de passe avec la commande :
 
- ``` passwd ```
+ ``` 
+ passwd 
+ ```
 
 Puis mettre à jour son VPS (commande sous Linux) :
 
-``` sudo apt update & sudo apt upgrade ```
+``` 
+sudo apt update & sudo apt upgrade 
+```
+
+Pour mettre à jours son Linux :
+```
+do-release-upgrade
+```
 
 Pour redémarrer son serveur :
 
-``` sudo reboot ```
+``` 
+sudo reboot 
+```
 
 Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que nous voulons utiliser puis [configurer Git](git.md) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer son serveur (exemple : apache ou nginx)](config_server.md).
