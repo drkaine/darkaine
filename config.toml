@@ -47,7 +47,7 @@ anchors = "on"
 [extra]
 
 name = "Darkaine"                     # Your name
-id = "Mémos"                           # Your id / username / handle
+id = ""                           # Your id / username / handle
 bio = "Je découvre, j'apprends, je prend des notes et je partage mes mémos."                          # Your bio
 avatar = "img/avatar.jpeg"            # Your avatar
 links = [                             # Your links
@@ -63,15 +63,14 @@ recent_more = true
 recent_more_text = "plus »"
 
 sections = [
-    { name = "Notes", path = "/", is_external = false },
-    { name = "Projets", path = "/projets", is_external = false },
-    { name = "À propos", path = "/a-propos", is_external = false },
-    { name = "Katas", path = "/katas", is_external = false },
+    { name = "Notes", path = "/notes", is_external = false },
+    #{ name = "Projets", path = "/projects", is_external = false },
+    #{ name = "À propos", path = "/about", is_external = false },
     #{ name = "github", path = "https://github.com/drkaine", is_external = true },
 ]
-blog_section_path = ""
+blog_section_path = "notes"
 
-nav_separator = "\\"
+nav_separator = "::"
 nav_wrapper_left = "{"
 nav_wrapper_right = "} ;"
 nav_wrapper_separator = ","
