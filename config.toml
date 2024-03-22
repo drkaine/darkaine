@@ -47,7 +47,7 @@ anchors = "on"
 [extra]
 
 name = "Darkaine"                     # Your name
-id = ""                           # Your id / username / handle
+id = "Mémos"                           # Your id / username / handle
 bio = "Je découvre, j'apprends, je prend des notes et je partage mes mémos."                          # Your bio
 avatar = "img/avatar.jpeg"            # Your avatar
 links = [                             # Your links
