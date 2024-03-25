@@ -2,6 +2,7 @@
 title = "Premier pas avec un VPS"
 date = 2024-03-20
 description = "Prise en main d'un VPS"
+draft = false
 
 [taxonomies]
 categories = ["Configuration"]
@@ -82,4 +83,4 @@ Pour redémarrer son serveur :
 sudo reboot 
 ```
 
-Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que nous voulons utiliser puis [configurer Git](/notes/git) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer son serveur (exemple : apache ou nginx)](/notes/config_server).
+Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que nous voulons utiliser puis [configurer Git](/notes/git) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer son serveur (exemple : apache ou nginx)](/notes/configuration-server).

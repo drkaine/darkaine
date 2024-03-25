@@ -2,6 +2,7 @@
 title = "Configurer un serveur"
 date = 2024-03-20
 description = "Configurer un serveur apache ou nginx"
+draft = false
 
 [taxonomies]
 categories = ["Configuration"]
@@ -19,7 +20,7 @@ show_comment = true
 Il faut avoir un nom de domaine et relier le DNS à l'IP du serveur utilisé.
 Activer le rewrite :
 ```
-sudo aa2enmod rewrite
+sudo a2enmod rewrite
 ```
 
 S'assurer que le répertoire et son arborescence soient accessibles à l'utilisateur du serveur (en général data-web) :
