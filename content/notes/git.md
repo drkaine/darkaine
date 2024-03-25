@@ -1,15 +1,11 @@
 +++
 title = "Configurer Git"
 date = 2024-03-20
-description = "Configurer git en global et avoir des commit signés"
 draft = false
 
 [taxonomies]
 categories = ["Configuration"]
 tags = ["configuration", "prise en main"]
-
-[extra]
-lang = "fr"
 
 +++
 

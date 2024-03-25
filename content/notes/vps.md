@@ -1,17 +1,11 @@
 +++
 title = "Premier pas avec un VPS"
 date = 2024-03-20
-description = "Prise en main d'un VPS"
 draft = false
 
 [taxonomies]
 categories = ["Configuration"]
 tags = ["configuration", "infrastructure", "prise en main"]
-
-[extra]
-lang = "fr"
-toc = true
-show_comment = true
 
 +++
 

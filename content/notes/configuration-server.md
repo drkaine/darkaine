@@ -1,17 +1,11 @@
 +++
 title = "Configurer un serveur"
 date = 2024-03-20
-description = "Configurer un serveur apache ou nginx"
 draft = false
 
 [taxonomies]
 categories = ["Configuration"]
 tags = ["configuration", "infrastructure", "prise en main"]
-
-[extra]
-lang = "fr"
-toc = true
-show_comment = true
 
 +++
 
