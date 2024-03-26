@@ -1,18 +1,6 @@
-+++
-title = "Participer"
-description = "Tu veux partager tes notes ? Voici la marche à suivre"
-template = "prose.html"
-insert_anchor_links = "none"
-
-[extra]
-lang = 'fr'
-+++
-
-Bonjour,
-
 Ce site me sert à conserver les notes prises lors de ma veille, mes lectures, etc. J'ai pensé que tant qu'à être en ligne, autant en faire profiter les autres. Le répertoire est public, et tout le monde peut partager ses notes, projets et autres.
 
-Tu crées une branche, publie ta branche, demande une merge request et se sera en ligne après review  😀.
+Tu crées une branche, publie ta branche, demande une merge request et se sera en ligne après review 😀.
 
 ## Partager ses notes
 
@@ -77,6 +65,7 @@ links = [
   { name = "Github", url = "lien vers le repos" },
 ]
 ```
+
 ## Evolution
 
 Si tu as des idées d'évolution tu peux faire le développement dans une branche, ou créer une issue.
