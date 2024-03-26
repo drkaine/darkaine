@@ -12,7 +12,9 @@ lang = 'fr'
 
 Bonjour,
 
-Ce site me sert à conserver les notes prises lors de ma veille, mes lectures, etc. J'ai pensé que tant qu'à être en ligne, autant en faire profiter les autres. Le répertoire est public, et tout le monde peut partager ses notes.
+Ce site me sert à conserver les notes prises lors de ma veille, mes lectures, etc. J'ai pensé que tant qu'à être en ligne, autant en faire profiter les autres. Le répertoire est public, et tout le monde peut partager ses notes, projets et autres.
+
+Tu crées une branche, publie ta branche, demande une merge request et se sera en ligne 😀.
 
 ### Mise en place du projet
 
@@ -29,7 +31,6 @@ Pour cela créer un fichier markdown dans "content/notes". Le fichier doit débu
 ```
 +++
 title = "titre"
-author = "auteur"
 date = 2024-03-25
 description = "description"
 draft = false # false permet d'afficher la page
@@ -49,7 +50,7 @@ outdate_warn_days = 120 # le nombre de jours avant que l'alerte s'affiche
 name = "" # Ton nom
 id = "" # Ton id / peudo
 bio = "" # Ta description
-avatar = "img/avatar.jpeg" # Ton avatar, à ajouter dans les images
+avatar = "img/avatar/avatar.jpeg" # Ton avatar, à ajouter dans "static/img/avatar"
 links = [ # Tes liens
     {name = "GitHub", icon = "github", url = "https://github.com/NOM"},
     {name = "Twitter", icon = "twitter", url = "https://twitter.com/NOM"},
@@ -61,4 +62,20 @@ links = [ # Tes liens
 Ce que tu veux partager en markdown
 ```
 
-Tu crées une branche, publie ta branche, demande une merge request et se sera en ligne 😀.
+## Partager ses projets
+
+Pour partager ses projets, il faut rajouter dans "content/projects/data.toml" :
+```
+[[project]]
+author = "nom"
+name = "nom du projet"
+desc = "description du projet"
+tags = ["tag"]
+img = "chemin/image" # image à rajouter dans "static/img/projets"
+links = [
+  { name = "Site", url = "url" },
+  { name = "Github", url = "lien vers le repos" },
+]
+
+```
+
