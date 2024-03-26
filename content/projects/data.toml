@@ -1,0 +1,10 @@
+[[project]]
+author = "Darkaine"
+name = "Repas en avance"
+desc = "Site de recettes de cuisine"
+tags = ["laravel"]
+img = ""
+links = [
+  { name = "Site", url = "http://www.repas-en-avance.darkaine.fr/" },
+  { name = "Github", url = "https://github.com/drkaine/repas-en-avance" },
+]
