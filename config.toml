@@ -68,7 +68,7 @@ sections = [
 ]
 blog_section_path = "notes"
 
-nav_separator = "::"
+nav_separator = "=>"
 nav_wrapper_left = "{"
 nav_wrapper_right = "} ;"
 nav_wrapper_separator = ","
