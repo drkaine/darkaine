@@ -5,7 +5,18 @@ draft = false
 
 [taxonomies]
 categories = ["Configuration"]
-tags = ["configuration", "prise en main"]
+tags = ["configuration", "prise en main", "Darkaine"]
+
+[extra]
+
+name = "Darkaine"                     # Your name
+bio = "Je découvre, j'apprends, je prend des notes et je partage mes mémos."                          # Your bio
+avatar = "img/avatar.jpeg"            # Your avatar
+links = [                             # Your links
+    {name = "GitHub", icon = "github", url = "https://github.com/drkaine"},
+    {name = "Twitter", icon = "twitter", url = "https://twitter.com/Darkaine1"},
+    {name = "Bluesky", icon = "bluesky", url = "https://bsky.app/profile/darkaine.bsky.social"},
+]
 
 +++
 

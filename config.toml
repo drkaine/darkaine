@@ -46,14 +46,12 @@ anchors = "on"
 
 [extra]
 
-name = "Darkaine"                     # Your name
+name = "Mémos"                     # Your name
 id = "Mémos"                           # Your id / username / handle
-bio = "Je découvre, j'apprends, je prend des notes et je partage mes mémos."                          # Your bio
-avatar = "img/avatar.jpeg"            # Your avatar
+bio = "Receuil de notes et espace de partage"                          # Your bio
+avatar = "img/apple-touch-icon.png"            # Your avatar
 links = [                             # Your links
-    {name = "GitHub", icon = "github", url = "https://github.com/drkaine"},
-    {name = "Twitter", icon = "twitter", url = "https://twitter.com/Darkaine1"},
-    {name = "Bluesky", icon = "bluesky", url = "https://bsky.app/profile/darkaine.bsky.social"},
+    {name = "GitHub", icon = "github", url = "https://github.com/drkaine/darkaine"},
 ]
 
 homepage_layout = "recent"             # "about" | "list" | "recent"
