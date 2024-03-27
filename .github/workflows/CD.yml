@@ -1,0 +1,40 @@
+name: déploiement
+
+# 
+# Déclencher le flux de travail lors d'un push et
+# demande de fusion sur la branche de production
+on:
+  push:
+    branches:
+      [main]
+  pull_request:
+    branches:
+      [main]
+      
+# Authentifiez-vous sur le serveur via SSH 
+# et exécutez notre script de déploiement
+jobs:
+  deploiement_continue :
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: deploy change
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSHKEY }}
+          password: ${{ secrets.PASSWORD }}
+      - run: echo "Le script commence"
+          cd ~/production/darkaine/ &&
+
+          echo "pull origin main"
+          git pull
+
+          echo "Le déploiement commence ..."
+
+          echo "Lancement du build"
+          zola build
+
+          echo "Déploiement terminé!"
