@@ -55,9 +55,9 @@ La principale différence entre la livraison continue et le déploiement continu
 
 ### Avec Github action
 
-#### En utilisant un script
+#### Créer un script
 
-Pour une mise en production simple, on peut soit créer un script bash dans un dossier .scripts à la racine du projet, avec comme nom, par exemple "deploy.sh".
+Pour une mise en production simple, on créer un script bash, qui va refaire notre processus de mise en production, dans un dossier .scripts à la racine du projet, avec comme nom, par exemple "deploy.sh".
 L'exemple est pour un déploiement d'un [projet](https://github.com/drkaine/repas-en-avance) en laravel :
 ```
 #!/bin/bash
@@ -105,14 +105,14 @@ php artisan up
 echo "Déploiement terminé!"
 ```
 
-Dans le cas de l'utilisation d'un fichier script pour le déploiement, il faut lui donner la permission d'écriture dans le dossier :
+Il faut lui donner la permission d'écriture dans le dossier :
 ```
 sudo chmod +x ./REPOSITORY/.scripts/deploy.sh
 ```
 
 ### Le workflow
 
-Ou il est possible d'avoir tout dans le fichier de la pipeline (le workflow), qui se situe dans un dossier .github/workflows, pour le nom j'ai choisie CD.yml
+Il faut maintenant créer le fichier de la pipeline (le workflow), qui se situe dans un dossier .github/workflows, pour le nom j'ai choisie CD.yml
 Comme avec ce [projet](https://github.com/drkaine/darkaine) :
 ```
 name: déploiement
@@ -142,27 +142,9 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           password: ${{ secrets.PASSWORD }}
-      - run: echo "Le script commence"
-          cd ~/production/darkaine/ &&
-
-          echo "pull origin main"
-          git pull
-
-          echo "Le déploiement commence ..."
-
-          echo "Lancement du build"
-          zola build
-
-          echo "Déploiement terminé!"
 ```
 
-La partie - run: lancera les commandes shell qui suivent, pour une [expliction plus détaillé](/notes/github-action) du fichier au dessus. 
-
-La différence si on utilise un fichier pour le script :
-```
-script: "~/production/repas-en-avance/.scripts/deploy.sh"
-```
-Au lieu du run.
+Pour une [expliction plus détaillé](/notes/github-action) du fichier au dessus. 
 
 Maintenant on a créé notre pipeline, on peut commit et push les modifications et il apparaîtrat un icon success ou error selon si la pipeline à réussie ou non :
 

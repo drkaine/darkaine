@@ -26,15 +26,4 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           password: ${{ secrets.PASSWORD }}
-      - run: echo "Le script commence"
-          cd ~/production/darkaine/ &&
-
-          echo "pull origin main"
-          git pull
-
-          echo "Le déploiement commence ..."
-
-          echo "Lancement du build"
-          zola build
-
-          echo "Déploiement terminé!"
+          script: "~/production/darkaine/.scripts/deploy.sh"
