@@ -1,3 +1,5 @@
+[![déploiement](https://github.com/drkaine/darkaine/actions/workflows/CD.yml/badge.svg)](https://github.com/drkaine/darkaine/actions/workflows/CD.yml)
+
 Ce site me sert à conserver les notes prises lors de ma veille, mes lectures, etc. J'ai pensé que tant qu'à être en ligne, autant en faire profiter les autres. Le répertoire est public, et tout le monde peut partager ses notes, projets et autres.
 
 Tu crées une branche, publie ta branche, demande une merge request et se sera en ligne après review 😀.
