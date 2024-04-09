@@ -58,7 +58,7 @@ La principale différence entre la livraison continue et le déploiement continu
 #### Créer un script
 
 Pour une mise en production simple, on créer un script bash, qui va refaire notre processus de mise en production, dans un dossier .scripts à la racine du projet, avec comme nom, par exemple "deploy.sh".
-L'exemple est pour un déploiement d'un [projet](https://github.com/drkaine/repas-en-avance) en laravel :
+L'exemple est pour un déploiement d'un [projet](https://github.com/drkaine/repas-en-avance/blob/main/.scripts/deploy.sh) en laravel :
 ```
 #!/bin/bash
 set -e
@@ -113,7 +113,7 @@ sudo chmod +x ./REPOSITORY/.scripts/deploy.sh
 ### Le workflow
 
 Il faut maintenant créer le fichier de la pipeline (le workflow), qui se situe dans un dossier .github/workflows, pour le nom j'ai choisie CD.yml
-Comme avec ce [projet](https://github.com/drkaine/darkaine) :
+Comme avec ce [projet](https://github.com/drkaine/repas-en-avance/blob/main/.github/workflows/CD.yml) :
 ```
 name: déploiement
 
