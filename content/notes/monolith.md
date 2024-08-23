@@ -56,4 +56,4 @@ Avec l'essor des applications web complexes et la nécessité de scalabilité, l
 
 ### Conclusion
 
-Le choix entre une architecture monolithique et une architecture microservices dépend des besoins spécifiques du projet, de l'équipe, et de la vision à long terme du logiciel. Pour des projets de petite taille ou au démarrage, un monolithe peut être parfaitement adapté. Cependant, pour des applications complexes qui nécessitent de la scalabilité et une grande flexibilité, une approche basée sur les microservices peut être plus appropriée.
+Le choix entre une architecture monolithique et une [architecture microservices](/notes/micro-services) dépend des besoins spécifiques du projet, de l'équipe, et de la vision à long terme du logiciel. Pour des projets de petite taille ou au démarrage, un monolithe peut être parfaitement adapté. Cependant, pour des applications complexes qui nécessitent de la scalabilité et une grande flexibilité, une approche basée sur les microservices peut être plus appropriée.
