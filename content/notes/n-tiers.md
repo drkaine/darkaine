@@ -4,8 +4,8 @@ date = 2024-08-26
 draft = false
 
 [taxonomies]
-categories = ["Configuration"]
-tags = ["configuration", "prise en main", "Darkaine"]
+categories = ["Architecture"]
+tags = ["architecture", "Darkaine"]
 
 [extra]
 
