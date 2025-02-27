@@ -1,19 +1,9 @@
 [[project]]
 author = "Darkaine"
-name = "Repas en avance"
-desc = "Site de recettes de cuisine"
-tags = ["laravel"]
+name = "darkaine"
+desc = "Blog ouvert à tous pour partager des notes, des articles, des tutoriaux, etc."
+tags = ["blog"]
 img = ""
 links = [
-  { name = "Site", url = "http://www.repas-en-avance.darkaine.fr/" },
-  { name = "Github", url = "https://github.com/drkaine/repas-en-avance" },
-]
-[[project]]
-author = "Darkaine"
-name = "Config forge"
-desc = "Outil de création de fichier de configuration, pour le moment apache et nginx, en ligne de commande"
-tags = ["go", "CLI"]
-img = ""
-links = [
-  { name = "Github", url = "https://github.com/drkaine/config-forge" },
+  { name = "Site", url = "https://darkaine.fr" },
 ]

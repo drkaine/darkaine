@@ -1,6 +1,6 @@
 +++
-title = "Premier pas avec un VPS"
-date = 2024-03-20
+title = "Premier Pas avec un VPS"
+date = 2025-02-27
 draft = false
 
 [taxonomies]
@@ -10,7 +10,7 @@ tags = ["configuration", "infrastructure", "prise en main", "Darkaine"]
 [extra]
 
 name = "Darkaine"
-bio = "Je découvre, j'apprends, je prend des notes et je les partage."
+bio = "Je découvre, j'apprends, je prends des notes et je les partage."
 avatar = "img/avatar/avatar.jpeg"
 links = [
     {name = "GitHub", icon = "github", url = "https://github.com/drkaine"},
@@ -20,7 +20,7 @@ links = [
 
 +++
 
-## Qu'est ce qu'un VPS :
+## Qu'est-ce qu'un VPS ?
 
 Un VPS, ou Serveur Privé Virtuel, est un ordinateur virtuel dans le cloud. Au lieu d'avoir un ordinateur physique, un VPS offre un espace sur un serveur distant, plus ou moins puissant selon l'offre. Il se gère comme un ordinateur classique, installation et exécution de logiciels, mais à distance.
 
@@ -28,64 +28,69 @@ Imaginez-le comme une section isolée et sécurisée d'un grand ordinateur, où 
 
 Les VPS sont souvent utilisés pour héberger des sites web, des applications ou pour effectuer des tâches informatiques spécifiques, offrant ainsi une flexibilité et une gestion plus simples que l'achat et la gestion de notre propre serveur physique.
 
+### Les Avantages
 
-### Les avantages :
+Les VPS présentent plusieurs avantages :
 
-Les VPS ont comme avantages :
+- **Abordabilité** : Ils sont généralement moins chers que les serveurs physiques dédiés, ce qui les rend accessibles à un plus large éventail d'utilisateurs.
+- **Scalabilité** : Il est possible, et généralement facile, d'ajuster les ressources (comme la puissance du processeur, la mémoire RAM et l'espace de stockage) en fonction des besoins.
+- **Flexibilité** : Vous avez un contrôle total sur votre environnement virtuel, ce qui vous permet d'installer et de configurer les logiciels dont vous avez besoin, et de personnaliser les paramètres selon vos besoins.
+- **Sécurité** : Ils offrent généralement un niveau de sécurité élevé, avec des fonctionnalités telles que des pare-feu et des mesures de protection contre les attaques DDoS.
 
-* D'être abordables : ils sont généralement moins chers que les serveurs physiques dédiés, ce qui les rend accessibles à un plus large éventail d'utilisateurs.
-* La scalabilité : il est possible, et généralement facile, d'ajuster les ressources (comme la puissance du processeur, la mémoire RAM et l'espace de stockage) en fonction des besoins.
-* La flexibilité : on a un contrôle total sur notre environnement virtuel, ce qui nous permet d'installer et de configurer les logiciels dont on a besoin, et de personnaliser les paramètres selon nos besoins.
-* La sécurité : ils offrent généralement un niveau de sécurité élevé, avec des fonctionnalités telles que des pare-feu et des mesures de protection contre les attaques DDoS.
+### Les Inconvénients
 
+Cependant, les VPS ont aussi des inconvénients :
 
-### Les inconvénients :
+- **Ressources Partagées** : Bien que chaque VPS soit isolé, les ressources physiques du serveur sont partagées entre plusieurs utilisateurs, ce qui peut parfois entraîner des problèmes de performances si d'autres utilisateurs consomment trop de ressources.
+- **Dépendance au Fournisseur** : Vous dépendez du fournisseur de services pour la disponibilité et la fiabilité du serveur. Tout problème avec le fournisseur de services peut affecter votre VPS.
+- **Compétences Techniques** : La gestion d'un VPS nécessite généralement une certaine expertise technique pour l'installation, la configuration et la maintenance du système d'exploitation et des logiciels.
+- **Responsabilité de la Sécurité** : Bien que les fournisseurs offrent souvent des mesures de sécurité, la responsabilité de sécuriser votre VPS incombe toujours à l'utilisateur. Cela signifie que vous devez prendre des mesures appropriées pour protéger vos données et votre environnement contre les cybermenaces.
+- **Possibilité de Surutilisation** : Si le fournisseur surcharge ses serveurs avec trop de VPS, cela peut entraîner une dégradation des performances pour tous les utilisateurs sur ce serveur.
 
+## Premiers Pas avec un VPS
 
-Les VPS ont comme inconvénients :
+Après avoir sélectionné votre offre VPS, en choisissant votre RAM, votre CPU, votre OS et votre stockage, il faut récupérer l'adresse IP, le nom de l'utilisateur et le mot de passe. Une fois toutes ces informations en main, sur votre machine physique, créez une clé SSH.
 
-* Des ressources partagées : bien que chaque VPS soit isolé, les ressources physiques du serveur sont partagées entre plusieurs utilisateurs, ce qui peut parfois entraîner des problèmes de performances si d'autres utilisateurs consomment trop de ressources.
-* Une dépendance au fournisseur : on dépend du fournisseur de services pour la disponibilité et la fiabilité du serveur. Tout problème avec le fournisseur de services peut affecter notre VPS.
-* Des compétences techniques : la gestion d'un VPS nécessite généralement une certaine expertise technique pour l'installation, la configuration et la maintenance du système d'exploitation et des logiciels.
-* La responsabilité de la sécurité : Bien que les fournisseurs offrent souvent des mesures de sécurité, la responsabilité de sécuriser notre VPS incombe toujours à l'utilisateur. Cela signifie que nous devons prendre des mesures appropriées pour protéger nos données et notre environnement contre les cybermenaces.
-* La possibilité de surutilisation : Si le fournisseur surcharge ses serveurs avec trop de VPS, cela peut entraîner une dégradation des performances pour tous les utilisateurs sur ce serveur.
-
-
-## Premiers pas avec un VPS
-
-Après avoir sélectionné son offre VPS, en choisissant sa RAM, son CPU, son OS et son stockage, il faut récupérer l'adresse IP, le nom de l'utilisateur et le mot de passe. Une fois toutes ces informations en main, sur sa machine physique, on se crée une clé SSH.
-
- ``` 
- ssh-keygen -t rsa -b 4096 -C "your_email@example.com" 
- ```
-
-Ensuite, la commande suivante sert à se connecter à son VPS :
-
- ``` 
- NOM_Utilisateur@IPV4 # exemple ubuntu@00.00.000.000 
- ```
-
-Une des premières choses à faire une fois connecté est de changer son mot de passe avec la commande :
-
- ``` 
- passwd 
- ```
-
-Puis mettre à jour son VPS (commande sous Linux) :
-
-``` 
-sudo apt update & sudo apt upgrade 
+```bash
+ssh-keygen -t rsa -b 4096 -C "votre_email@example.com"
 ```
 
-Pour mettre à jours son Linux :
+Ensuite, la commande suivante sert à se connecter à votre VPS :
+
+```bash
+NOM_Utilisateur@IPV4 # exemple ubuntu@00.00.000.000
 ```
+
+Une des premières choses à faire une fois connecté est de changer votre mot de passe avec la commande :
+
+```bash
+passwd
+```
+
+Puis mettez à jour votre VPS (commande sous Linux) :
+
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+Pour mettre à jour votre Linux :
+
+```bash
 do-release-upgrade
 ```
 
-Pour redémarrer son serveur :
+Pour redémarrer votre serveur :
 
-``` 
-sudo reboot 
+```bash
+sudo reboot
 ```
 
-Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que nous voulons utiliser puis [configurer Git](/notes/git) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer son serveur (exemple : apache ou nginx)](/notes/configuration-server).
+Il ne reste plus qu'à installer les gestionnaires de paquets et les langages que vous souhaitez utiliser, puis [configurer Git](/notes/git) pour pouvoir commencer à travailler. Pour avoir un site fonctionnel et ouvert, il faut avoir un nom de domaine, le rattacher au VPS et [configurer votre serveur (exemple : Apache ou Nginx)](/notes/configuration-server).
+
+## Ressources Supplémentaires
+
+- [DigitalOcean - Introduction to VPS](https://www.digitalocean.com/community/tutorials/what-is-a-vps) : Un guide d'introduction aux VPS.
+- [Linode - Getting Started with a VPS](https://www.linode.com/docs/guides/getting-started-with-linode/) : Un guide pour débuter avec un VPS sur Linode.
+- [Vultr - How to Set Up a VPS](https://www.vultr.com/docs/how-to-set-up-a-vps) : Un tutoriel sur la configuration d'un VPS.
+- [AWS - What is a VPS?](https://aws.amazon.com/what-is/vps/) : Une explication des VPS dans le contexte d'AWS.
+- [VPS vs. Dedicated Server](https://www.hostinger.com/tutorials/vps-vs-dedicated-server) : Un article comparant les VPS et les serveurs dédiés pour aider à choisir la meilleure option.

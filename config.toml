@@ -19,6 +19,8 @@ output_dir = "public"
 compile_sass = true
 minify_html = true
 build_search_index = false            # Keep this false, search is temporarily unsupported
+generate_feeds = true                 # Whether to generate a feed file in root, read docs for more info about rss feed
+feed_filenames = ["feed.xml"] 
 taxonomies = [{ name = "tags" }, { name = "categories" }]
 
 [markdown]
@@ -66,7 +68,7 @@ sections = [
 ]
 blog_section_path = "notes"
 
-nav_separator = "=>"
+nav_separator = "  =>  "
 nav_wrapper_left = "{"
 nav_wrapper_right = "} ;"
 nav_wrapper_separator = ","
@@ -97,3 +99,5 @@ footer_credits = true                 # Whether to show "powered by zola and ser
 not_found_title = "404"
 not_found_error_text = "Not Found"
 not_found_recover_text = "« Retour à l'accueil »"
+force_theme = false
+reaction = false

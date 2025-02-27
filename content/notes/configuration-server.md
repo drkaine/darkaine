@@ -1,6 +1,6 @@
 +++
-title = "Configurer un serveur"
-date = 2024-03-20
+title = "Configurer un Serveur"
+date = 2025-02-27
 draft = false
 
 [taxonomies]
@@ -10,7 +10,7 @@ tags = ["configuration", "infrastructure", "prise en main", "Darkaine"]
 [extra]
 
 name = "Darkaine"
-bio = "Je découvre, j'apprends, je prend des notes et je les partage."
+bio = "Je découvre, j'apprends, je prends des notes et je les partage."
 avatar = "img/avatar/avatar.jpeg"
 links = [
     {name = "GitHub", icon = "github", url = "https://github.com/drkaine"},
@@ -22,34 +22,42 @@ links = [
 
 ## Configuration générale
 
-Il faut avoir un nom de domaine et relier le DNS à l'IP du serveur utilisé.
-Activer le rewrite :
-```
-sudo a2enmod rewrite
-```
+Pour configurer un serveur, il est essentiel d'avoir un nom de domaine et de relier le DNS à l'IP du serveur utilisé. Voici les étapes à suivre :
 
-S'assurer que le répertoire et son arborescence soient accessibles à l'utilisateur du serveur (en général data-web) :
-```
-sudo chmod -R 755 chemin/vers/le/répertoire
-```
+1. **Activer le module de réécriture** :
+   ```bash
+   sudo a2enmod rewrite
+   ```
 
-Et avoir un projet à utiliser.
+2. **S'assurer que le répertoire et son arborescence soient accessibles à l'utilisateur du serveur** (en général `data-web`) :
+   ```bash
+   sudo chmod -R 755 /chemin/vers/le/répertoire
+   ```
+
+3. **Avoir un projet à utiliser** : Assurez-vous que votre projet est prêt à être déployé sur le serveur.
 
 ## Configuration Apache
 
-En général, il est installé par défaut, sinon :
-```
+Apache est souvent installé par défaut sur de nombreux systèmes. Si ce n'est pas le cas, vous pouvez l'installer avec les commandes suivantes :
+
+```bash
 sudo apt update
 sudo apt install apache2
 ```
 
-Ensuite, il faut créer le fichier de configuration pour relier notre projet au nom de domaine :
-```
+### Création du fichier de configuration
+
+Ensuite, il faut créer le fichier de configuration pour relier votre projet au nom de domaine :
+
+```bash
 sudo nano /etc/apache2/sites-available/nom-site.conf
 ```
 
-Et y mettre la config :
-```
+### Exemple de configuration
+
+Voici un exemple de configuration à insérer dans le fichier :
+
+```apache
 <VirtualHost *:80>
     ServerName monsite.com
     ServerAlias www.monsite.com
@@ -65,38 +73,45 @@ Et y mettre la config :
     ErrorLog ${APACHE_LOG_DIR}/monsite_error.log
     CustomLog ${APACHE_LOG_DIR}/monsite_access.log combined
 </VirtualHost>
-
 ```
 
-Puis, il faut relier la configuration de sites-available avec sites-enabled et redémarrer le serveur :
-```
+### Activation du site
+
+Puis, il faut relier la configuration de `sites-available` avec `sites-enabled` et redémarrer le serveur :
+
+```bash
 sudo a2ensite nom_de_votre_site.conf
 sudo systemctl restart apache2
 ```
 
-Et voilà, votre site est en ligne.
-
+Et voilà, votre site est en ligne !
 
 ## Configuration Nginx
 
-En général, il n'est pas installé par défaut, donc il faut l'installer et arrêter Apache :
-```
+Nginx n'est pas toujours installé par défaut, donc il faut l'installer et arrêter Apache si nécessaire :
+
+```bash
 sudo apt update
 sudo apt install nginx
 sudo systemctl stop apache2 
 ```
 
-Ensuite, il faut créer le fichier de configuration pour relier notre projet au nom de domaine :
-```
+### Création du fichier de configuration
+
+Ensuite, créez le fichier de configuration pour relier votre projet au nom de domaine :
+
+```bash
 sudo nano /etc/nginx/sites-available/nom-site.conf
 ```
 
-Et y mettre la config :
-```
-server {
+### Exemple de configuration
 
+Voici un exemple de configuration à insérer dans le fichier :
+
+```nginx
+server {
     server_name nom-de-domaine www.nom-de-domaine;
-    root chemin/vers/le/répertoire #/public pour les frameworks;
+    root /chemin/vers/le/répertoire; # /public pour les frameworks;
 
     index index.html index.htm index.php;
     charset utf-8;
@@ -115,59 +130,79 @@ server {
 }
 ```
 
-Puis, il faut relier la configuration de sites-available avec sites-enabled et redémarrer le serveur :
-```
-sudo a2ensite /etc/nginx/sites-available/nom-site.conf
-sudo systemcl restart nginx
-```
+### Activation du site
 
-Et voilà, votre site est en ligne.
+Puis, reliez la configuration de `sites-available` avec `sites-enabled` et redémarrez le serveur :
 
-
-## Ajouter un certificat SSL
-
-On peut y rajouter un certificat pour être en HTTPS 
-* pour Nginx :
-```
-sudo apt-get install cerbot python3-cerbot-nginx -Y
-sudo cerbot --nginx -d www.nom-de-domaine
+```bash
+sudo ln -s /etc/nginx/sites-available/nom-site.conf /etc/nginx/sites-enabled/
+sudo systemctl restart nginx
 ```
 
-* pour Apache :
+Et voilà, votre site est en ligne !
+
+## Ajouter un Certificat SSL
+
+Pour sécuriser votre site avec HTTPS, vous pouvez ajouter un certificat SSL. Voici comment procéder :
+
+### Pour Nginx :
+
+```bash
+sudo apt-get install certbot python3-certbot-nginx -Y
+sudo certbot --nginx -d www.nom-de-domaine
 ```
+
+### Pour Apache :
+
+```bash
 sudo apt-get install certbot python3-certbot-apache
 sudo certbot --apache -d www.nom-de-domaine
 ```
 
+### Configuration du renouvellement automatique
+
 Pour mettre en place un cron pour le renouvellement automatique du certificat :
-```
+
+```bash
 sudo nano /etc/cron.d/certbot
 sudo certbot renew --dry-run # pour simuler le renouvellement
 ```
 
-## Nginx ou apache ?
+## Nginx ou Apache ?
 
 ### Nginx
 
-Points positifs :
-* Performance Élevée : Nginx est largement reconnu pour ses performances élevées, en particulier dans des environnements à forte charge ou avec de nombreuses connexions simultanées, grâce à son modèle asynchrone et orienté vers les événements.
-* Faible Utilisation de Mémoire : Nginx est connu pour sa faible empreinte mémoire, ce qui le rend adapté aux environnements où les ressources sont limitées.
-* Évolutivité Horizontale : Nginx est bien adapté à l'évolutivité horizontale, ce qui signifie qu'il peut facilement être déployé sur plusieurs serveurs pour équilibrer la charge.
-* Gestion des Requêtes Statiques : Nginx excelle dans la gestion des requêtes statiques, telles que les fichiers CSS, JavaScript et les images.
+**Points positifs** :
+- **Performance Élevée** : Nginx est reconnu pour ses performances élevées, surtout dans des environnements à forte charge.
+- **Faible Utilisation de Mémoire** : Nginx a une faible empreinte mémoire, adapté aux environnements limités.
+- **Évolutivité Horizontale** : Nginx est bien adapté à l'évolutivité horizontale.
+- **Gestion des Requêtes Statiques** : Nginx excelle dans la gestion des requêtes statiques.
 
-Points négatifs :
-* Configuration Complex : Pour les nouveaux utilisateurs, la configuration de Nginx peut sembler plus complexe que celle d'Apache en raison de sa syntaxe non conventionnelle et de son approche de configuration basée sur les directives.
-* Modules Limités : Bien que Nginx dispose de nombreux modules, il peut manquer de certaines fonctionnalités avancées disponibles dans Apache en raison de son approche plus modulaire.
+**Points négatifs** :
+- **Configuration Complexe** : La configuration peut sembler plus complexe pour les nouveaux utilisateurs.
+- **Modules Limités** : Certaines fonctionnalités avancées d'Apache peuvent manquer.
 
 ### Apache
 
-Points positifs :
-* Maturité et Fiabilité : Apache est l'un des serveurs web les plus anciens et les plus largement utilisés. Il a une communauté établie et une longue histoire de développement.
-* Module Richesse : Apache offre une large gamme de modules supplémentaires pour étendre ses fonctionnalités, ce qui le rend très flexible et adaptable à différents besoins.
-* Compatibilité : En raison de sa longue histoire et de sa popularité, Apache est bien pris en charge par de nombreuses applications et frameworks.
-* Configuration facile : La configuration d'Apache est généralement considérée comme relativement simple et intuitive, en particulier pour ceux qui sont familiers avec la syntaxe basée sur les fichiers .htaccess.
+**Points positifs** :
+- **Maturité et Fiabilité** : Apache est l'un des serveurs web les plus anciens et les plus utilisés.
+- **Module Richesse** : Offre une large gamme de modules supplémentaires.
+- **Compatibilité** : Bien pris en charge par de nombreuses applications.
+- **Configuration Facile** : Généralement considérée comme intuitive.
 
-Points négatifs :
-* Utilisation de Mémoire : Apache utilise généralement plus de ressources système que Nginx, en particulier lorsqu'il gère un grand nombre de connexions simultanées.
-* Performance en Charge élevée : Bien qu'Apache soit capable de gérer des charges de trafic importantes, il peut être moins efficace que Nginx dans certaines situations de haute charge en raison de son modèle de traitement des requêtes.
-* Configuration Présumée par Processus : La configuration par défaut d'Apache utilise un modèle de processus présumé, où chaque demande crée un nouveau processus ou un nouveau thread, ce qui peut entraîner une surcharge du système en cas de trafic intense.
+**Points négatifs** :
+- **Utilisation de Mémoire** : Utilise généralement plus de ressources que Nginx.
+- **Performance en Charge Élevée** : Peut être moins efficace que Nginx dans certaines situations.
+- **Configuration Présumée par Processus** : Peut entraîner une surcharge en cas de trafic intense.
+
+## Conclusion
+
+Configurer un serveur peut sembler complexe, mais en suivant ces étapes, vous serez en mesure de mettre en place un environnement de production solide. Que vous choisissiez Apache ou Nginx, assurez-vous de bien comprendre les besoins de votre application et de choisir la solution qui convient le mieux. N'hésitez pas à consulter la documentation officielle pour des informations plus détaillées et des options avancées.
+
+## Ressources Supplémentaires
+
+- [Apache HTTP Server Documentation](https://httpd.apache.org/docs/) : Documentation officielle d'Apache.
+- [Nginx Documentation](https://nginx.org/en/docs/) : Documentation officielle de Nginx.
+- [Certbot Documentation](https://certbot.eff.org/docs/) : Documentation sur Certbot pour la gestion des certificats SSL.
+- [DigitalOcean - How To Set Up Nginx](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx) : Un guide sur la configuration de Nginx.
+- [DigitalOcean - How To Set Up Apache](https://www.digitalocean.com/community/tutorials/how-to-set-up-apache) : Un guide sur la configuration d'Apache.

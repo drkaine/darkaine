@@ -1,6 +1,6 @@
 +++
 title = "Configurer Git"
-date = 2024-03-20
+date = 2025-02-27
 draft = false
 
 [taxonomies]
@@ -10,7 +10,7 @@ tags = ["configuration", "prise en main", "Darkaine"]
 [extra]
 
 name = "Darkaine"
-bio = "Je découvre, j'apprends, je prend des notes et je les partage."
+bio = "Je découvre, j'apprends, je prends des notes et je les partage."
 avatar = "img/avatar/avatar.jpeg"
 links = [
     {name = "GitHub", icon = "github", url = "https://github.com/drkaine"},
@@ -20,92 +20,117 @@ links = [
 
 +++
 
-## Configurer de façon global Git
+## Configurer de façon globale Git
 
-D'abord on commence par mettre les variables du user dans la config :
-```
-git congig --global user.name "nom"
-git congig --global user.email "nom@test.fr"
-```
+Pour commencer, il est essentiel de configurer les informations de l'utilisateur dans Git. Cela permet d'associer vos commits à votre identité. Voici comment procéder :
 
-Ensuite il faut créer une clef SSH :
-```
-ssh -keygen -t rsa -bb 4096 -C "nom@test.fr"
-```
+1. **Configurer le nom d'utilisateur** :
+   ```bash
+   git config --global user.name "Votre Nom"
+   ```
 
-Démarrer l'agent SSH et configure votre shell pour communiquer avec lui :
-```
-eval "$(ssh-agent -s)"
-```
+2. **Configurer l'adresse e-mail** :
+   ```bash
+   git config --global user.email "votre.email@example.com"
+   ```
 
-Pour ajouter des clés privées SSH à l'agent SSH en cours d'exécution. L'agent SSH est un programme qui gère les clés privées et permet à l'utilisateur de se connecter à des serveurs sans avoir à spécifier manuellement la clé privée à chaque fois :
-```
-ssh-add  ~/.ssh/id_rsa
-```
+### Vérification de la Configuration
 
-Il ne reste plus qu'à ajouter la clef publique sur [github](https://github.com/settings/keys):
-```
-cat ~/.ssh/id_rsa.pub
+Pour vérifier que vos informations sont correctement configurées, vous pouvez utiliser la commande suivante :
+
+```bash
+git config --list
 ```
 
-## Avoir des commit signés
+Cela affichera toutes les configurations, y compris votre nom et votre e-mail.
 
-En premier, s'il n'est pas installé de base, installer GnuPG(GPG) :
-```
-sudo apt update
-sudo apt install gnupg
-```
+## Créer une Clé SSH
 
-Ensuite générer une clef et l'afficher :
-```
-gpg --full-generate-key
-gpg --list-secret-keys --keyid-format LONG
-```
+Pour interagir avec des dépôts distants, il est recommandé de créer une clé SSH. Voici comment procéder :
 
-Le terminal nous affiche :
-```
-$ gpg --list-secret-keys --keyid-format=long
-/Users/hubot/.gnupg/secring.gpg
-------------------------------------
-sec   4096R/3AA5C34371567BD2 2016-03-10 [expires: 2017-03-10]
-uid                          Hubot <hubot@example.com>
-ssb   4096R/4BB6D45482678BE3 2016-03-10
+1. **Générer une clé SSH** :
+   ```bash
+   ssh-keygen -t rsa -b 4096 -C "votre.email@example.com"
+   ```
 
-# l'id est 3AA5C34371567BD2
-```
+   Suivez les instructions à l'écran pour choisir l'emplacement et le mot de passe de la clé.
 
-L'ajouter à la config Git :
-```
-git config --global user.signkey ID_GPG
-git config --global commit.gpgSign true # signer les commits automatiquement
-```
+2. **Démarrer l'agent SSH** :
+   ```bash
+   eval "$(ssh-agent -s)"
+   ```
 
-Puis il faut rajouter la clef dans github :
-```
-gpg --armor --export ID_GPG
-```
-Voir la doc [github](https://docs.github.com/fr/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)
+3. **Ajouter votre clé SSH à l'agent** :
+   ```bash
+   ssh-add ~/.ssh/id_rsa
+   ```
 
-### Pourquoi des commits signés
+4. **Ajouter la clé publique à GitHub** :
+   Copiez la clé publique dans votre presse-papiers :
+   ```bash
+   cat ~/.ssh/id_rsa.pub
+   ```
 
-Avantages :
-* Intégrité du code : Les commits signés garantissent l'intégrité du code en assurant qu'il n'a pas été altéré entre le moment où il a été signé et le moment où il est vérifié.
+   Ensuite, allez dans les paramètres de votre compte GitHub, sous "SSH and GPG keys", et ajoutez une nouvelle clé SSH.
 
-* Authenticité de l'auteur : Les signatures permettent de vérifier l'identité de l'auteur du commit. Cela aide à garantir que le code provient bien de la personne prétendue et non d'un tiers malveillant.
+## Avoir des Commits Signés
 
-* Responsabilité accrue : Les commits signés lient l'auteur à son code de manière irréfutable, ce qui encourage une meilleure responsabilité en cas de problème ou de conflit.
+Pour garantir l'intégrité de vos commits, vous pouvez les signer avec GnuPG (GPG). Voici comment configurer cela :
 
-* Conformité aux normes de sécurité : Dans certains contextes, comme les projets open source ou les entreprises travaillant avec des réglementations strictes, l'utilisation de commits signés peut être nécessaire pour respecter les normes de sécurité et de conformité.
+1. **Installer GnuPG** :
+   ```bash
+   sudo apt update
+   sudo apt install gnupg
+   ```
 
-* Confiance accrue : Les commits signés renforcent la confiance dans le code, car ils montrent un niveau d'engagement et de professionnalisme de la part de l'auteur.
+2. **Générer une clé GPG** :
+   ```bash
+   gpg --full-generate-key
+   ```
 
-Inconvénients :
-* Complexité : La mise en place de commits signés peut être plus complexe, en particulier pour les nouveaux utilisateurs de Git. Cela implique la gestion de clés de chiffrement et la familiarisation avec les commandes associées.
+   Suivez les instructions pour créer votre clé.
 
-* Ralentissement du processus : Le processus de signature peut ajouter une étape supplémentaire à la création et à la validation des commits, ce qui peut ralentir légèrement le flux de travail.
+3. **Lister vos clés secrètes** :
+   ```bash
+   gpg --list-secret-keys --keyid-format LONG
+   ```
 
-* Dépendance externe : La vérification des commits signés dépend de la disponibilité et de la validité des clés publiques des auteurs. Si les clés ne sont pas accessibles ou si elles sont compromises, cela peut compromettre l'intégrité du processus de signature.
+   Notez l'ID de votre clé (par exemple, `3AA5C34371567BD2`).
 
-* Incompatibilité avec certains flux de travail : Certains flux de travail de développement peuvent ne pas bénéficier des commits signés ou peuvent trouver leur intégration contraignante, en particulier dans les environnements moins formels ou moins sensibles aux questions de sécurité.
+4. **Ajouter la clé à la configuration Git** :
+   ```bash
+   git config --global user.signkey ID_GPG
+   git config --global commit.gpgSign true  # Signer les commits automatiquement
+   ```
 
-* Surcharge d'administration : La gestion des clés de chiffrement et la vérification des signatures peuvent ajouter une surcharge administrative, en particulier dans les grands projets avec de nombreux contributeurs.
+5. **Ajouter la clé à GitHub** :
+   Exportez votre clé publique :
+   ```bash
+   gpg --armor --export ID_GPG
+   ```
+
+   Ajoutez cette clé dans les paramètres de votre compte GitHub sous "GPG keys".
+
+## Pourquoi des Commits Signés ?
+
+### Avantages :
+- **Intégrité du Code** : Les commits signés garantissent que le code n'a pas été altéré.
+- **Authenticité de l'Auteur** : Vérifie l'identité de l'auteur du commit.
+- **Responsabilité Accrue** : L'auteur est lié à son code, ce qui encourage une meilleure responsabilité.
+
+### Inconvénients :
+- **Complexité** : La mise en place peut être complexe pour les nouveaux utilisateurs.
+- **Ralentissement du Processus** : Le processus de signature peut ajouter une étape supplémentaire.
+- **Dépendance Externe** : La vérification des commits signés dépend de la disponibilité des clés publiques.
+
+## Conclusion
+
+Configurer Git correctement est essentiel pour un développement efficace. En suivant ces étapes, vous vous assurez que vos contributions sont bien identifiées et sécurisées. N'hésitez pas à consulter la documentation officielle de Git pour plus d'informations et d'options avancées.
+
+## Ressources Supplémentaires
+
+- [Git Documentation](https://git-scm.com/doc) : Documentation officielle de Git.
+- [Pro Git Book](https://git-scm.com/book/en/v2) : Un livre complet sur Git, disponible en ligne.
+- [GitHub Guides](https://guides.github.com/) : Guides pratiques pour utiliser Git et GitHub.
+- [SSH Keys on GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) : Instructions pour configurer des clés SSH sur GitHub.
+- [GPG for Signing Commits](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/generating-a-new-gpg-key) : Guide pour générer une clé GPG pour signer vos commits.
